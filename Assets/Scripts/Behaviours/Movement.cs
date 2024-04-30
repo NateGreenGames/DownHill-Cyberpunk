@@ -26,13 +26,14 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float moveSpeed = 2;
-    public float rotationSpeed = 4;
+    public float moveSpeed = 1;
+    public float rotationSpeed = 2;
     public float runningSpeed;
     public float vaxis, haxis;
     public bool isJumping, isJumpingAlt, isGrounded = false;
     public Vector3 movement;
-
+    public float jumpForce;
+    Rigidbody rb;
     void Start()
     {
         Debug.Log("Initialized: (" + this.name + ")");
@@ -46,7 +47,7 @@ public class Movement : MonoBehaviour
         haxis = Input.GetAxis("Horizontal");
         isJumping = Input.GetButton("Jump");
         isJumpingAlt = Input.GetKey(KeyCode.Joystick1Button0);
-
+        rb = GetComponent<Rigidbody>();
         //Simplified...
         runningSpeed = vaxis;
 
@@ -54,20 +55,21 @@ public class Movement : MonoBehaviour
         if (isGrounded)
         {
             movement = new Vector3(0, 0f, runningSpeed * 8);        // Multiplier of 8 seems to work well with Rigidbody Mass of 1.
-            movement = transform.TransformDirection(movement);      // transform correction A.K.A. "Move the way we are facing"
+            movement = transform.TransformDirection(movement);
+            rb.velocity = movement; // transform correction A.K.A. "Move the way we are facing"
         }
-        else
+        /*else
         {
             movement *= 0.70f;                                      // Dampen the movement vector while mid-air
-        }
+        }*/
 
-        GetComponent<Rigidbody>().AddForce(movement * moveSpeed);   // Movement Force
+           // Movement Force
 
 
         if ((isJumping || isJumpingAlt) && isGrounded)
         {
             Debug.Log(this.ToString() + " isJumping = " + isJumping);
-            GetComponent<Rigidbody>().AddForce(Vector3.up * 150);
+            GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
         }
 
 

@@ -106,7 +106,7 @@ public class CameraController : MonoBehaviour
         {
             b = new Vector3(target.position.x, target.position.y, target.position.z);
         }
-        transform.LookAt(a);
+        //transform.LookAt(a);
 
         if (this.transform.position.y < player.transform.position.y + 1)
         {

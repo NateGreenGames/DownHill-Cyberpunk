@@ -1125,6 +1125,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerTestCapsule
       objectReference: {fileID: 0}
+    - target: {fileID: 619044092065532161, guid: c63cb522563a6aa4e921bd66f2565d50,
+        type: 3}
+      propertyPath: jumpForce
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 619044092065532161, guid: c63cb522563a6aa4e921bd66f2565d50,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1087830346852622023, guid: c63cb522563a6aa4e921bd66f2565d50,
         type: 3}
       propertyPath: m_Mass
